@@ -1,0 +1,305 @@
+\documentclass[ucs,9pt]{beamer}
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice.
+%
+% Modified by Tobias G. Pfeiffer <tobias.pfeiffer@math.fu-berlin.de>
+% to show usage of some features specific to the FU Berlin template.
+
+% remove this line and the "ucs" option to the documentclass when your editor is not utf8-capable
+\usepackage[utf8x]{inputenc}    % to make utf-8 input possible
+\usepackage[german]{babel}     % hyphenation etc., alternatively use 'german' as parameter
+\usepackage[inkscape={/usr/bin/inkscap‌​e -z -C}]{svg}
+\usepackage{amsmath}
+\include{fu-beamer-template}  % THIS is the line that includes the FU template!
+\setbeamertemplate{navigation symbols}{} 
+\usepackage{arev,t1enc} % looks nicer than the standard sans-serif font
+% if you experience problems, comment out the line above and change
+% the documentclass option "9pt" to "10pt"
+
+% image to be shown on the title page (without file extension, should be pdf or png)
+\titleimage{images/aufbau}
+
+\title[FastTrack] % (optional, use only with long paper titles)
+{FastTrack}
+
+\subtitle
+{}
+
+\author[Author, Another] % (optional, use only with lots of authors)
+{Martin Görick}
+% - Give the names in the same order as the appear in the paper.
+
+\institute[FU Berlin] % (optional, but mostly needed)
+{Freie Universität Berlin}
+% - Keep it simple, no one is interested in your street address.
+
+\date[] % (optional, should be abbreviation of conference name)
+{Seminar: Peer-To-Peer Overlay Network Systems}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+\subject{}
+% This is only inserted into the PDF information catalog. Can be left
+% out.
+
+% you can redefine the text shown in the footline. use a combination of
+% \insertshortauthor, \insertshortinstitute, \insertshorttitle, \insertshortdate, ...
+\renewcommand{\footlinetext}{\insertshortinstitute, \insertshorttitle, \insertshortdate}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+%\AtBeginSection[]
+%{
+%  \begin{frame}<beamer>{Outline}
+%    \tableofcontents[currentsection,hideothersubsections]
+%  \end{frame}
+%}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Übersicht}
+  \tableofcontents[]%hideothersubsections]
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+%\section{Introduction}
+
+%\begin{frame}{title of frame} %title in brace
+%\begin{itemize}
+%\item test item
+%\end{itemize}
+%\end{frame}
+
+\section{Allgemeine Information}
+
+\begin{frame}{Allgemeine Informationen}
+\begin{itemize}
+	\item entwickelt von Niklas Zennstrom und Janus Friis
+	\item proprietäres Protokoll
+	\item normale Knoten (ON)
+	\item super Knoten (SN)
+	\item Windows Client (Kazaa)
+	\item Ziel: Dateiaustausch
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aufbau}
+\begin{figure}
+\includegraphics[scale=0.3]{images/aufbau}
+\caption{Aufbau des FastTrack Netzwerkes}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Komponenten}
+\begin{itemize}
+	\item FastTrack Media Desktop
+	\item Informationen in der Windows Registry
+		\begin{itemize}
+		\item SNs Cache
+		\end{itemize}
+	\item DDB Dateien
+		\begin{itemize}
+		\item Dateiname
+		\item Dateigröße
+		\item ContentHash
+		\item Datei Beschreibungen
+		\end{itemize}
+	\item Dat Dateien
+\end{itemize}
+\end{frame}
+
+\section{Funktionsweise}
+
+\subsection{Nachrichten}
+
+\begin{frame}{Nachrichten}
+\begin{itemize}
+\item Signalnachrichten, verschlüsselt
+	\begin{itemize}
+	\item Handshakes
+	\item Meta Daten
+	\item SN Liste
+	\end{itemize}
+\item Datei Transport
+	\begin{itemize}
+	\item direkte Verbindungen
+	\item HTTP Nachrichten
+	\end{itemize}
+\item Gewerbliche Werbung
+	\begin{itemize}
+	\item HTTP Nachrichten
+	\end{itemize}
+\item Sofortnachrichten, verschlüsselt
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Format einer Signal Nachricht}
+\begin{figure}
+\includegraphics[scale=0.3]{images/signal_message}
+\caption{Signal Nachricht Format}
+\end{figure}
+\end{frame}
+
+\subsection{Join}
+
+\begin{frame}{Join}
+\begin{itemize}
+\item UDP Pakete zu ausgewählte SNs
+\item zu allen UDP Response eine TCP connection
+	\begin{itemize}
+	\item Schlüssel Austausch
+	\item On sendet Peer information
+		\begin{itemize}
+		\item locale IP Adresse
+		\item Port
+		\item Username
+		\end{itemize}
+	\item SN sendet aktuelle Liste von SNs
+	\item wählen eines SN
+	\item kann Suchnachrichten senden
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Join - Ablauf}
+\begin{figure}
+\includegraphics[scale=0.25]{images/join}
+\caption{Ablauf eines Joins}
+\end{figure}
+\end{frame}
+
+\begin{frame}{SN wählen}
+\begin{itemize}
+\item SN Cache
+\begin{itemize}
+\item IP Adresse
+\item Port
+\item Auslastung
+\item Zeitstempel
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item Auslastung
+\item Lokalität
+\end{itemize}
+\end{frame}
+
+\begin{frame}{RTT - Lokalitäten}
+\begin{figure}
+\includegraphics[scale=0.4]{images/rttSns}
+\caption{Die RTT zwischen ON-SN und SN-SN}
+\end{figure}
+\end{frame}
+
+\subsection{Search}
+
+\begin{frame}{Suche}
+\begin{itemize}
+\item Suchanfrage an Eltern SN
+\item Eltern SN durchsucht seine Metadaten
+\item Eltern SN schickt gefundene Informationen zurück
+\item Eltern SN schickt Suchanfrage an andere SNs
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Download über NAT}
+\begin{itemize}
+\item Peer A sendet Request zu SN von B
+\item SN von B sendet Nachricht zu B 
+\item B verbindet sich zu A
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Informationsaustausch SNs}
+\begin{figure}
+\includegraphics[scale=0.25]{images/SnToSn}
+\caption{Austausch der Information zwischen SNs}
+\end{figure}
+\end{frame}
+
+\section{Weiterführende Informationen}
+
+\begin{frame}{Probleme}
+\begin{itemize}
+\item finden von Dateien
+\begin{itemize}
+\item RTT von SNs $< 100$
+\end{itemize}
+\item Dateihash schwach 
+	\begin{itemize}
+		\item UUHash
+		\item 2005 etwa 50\% infiziert \cite{uuHash}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Implementierungen}
+\begin{itemize}
+\item Kazaa
+\item Grokster
+\item Morpheus (ab 2002 gnutella)
+\item giFT (Open Source)
+\end{itemize}
+\begin{itemize}
+\item Skype
+\item Joost
+\end{itemize}
+\end{frame}
+
+%\begin{frame}[fragile]
+%  \frametitle{Test code frame}
+%\begin{semiverbatim}
+%Testcode
+%\end{semiverbatim}
+%\end{frame}
+
+%\section{Test Section 2}
+
+%\begin{frame}{}
+%\begin{figure}
+%\includegraphics[scale=0.5]{linux-logo}
+%\caption{linux-logo}
+%\end{figure}
+%\end{frame}
+
+
+
+% All of the following is optional and typically not needed. 
+\appendix
+\section<presentation>*{\appendixname}
+\subsection<presentation>*{For Further Reading}
+
+\begin{frame}[allowframebreaks]
+  \frametitle<presentation>{For Further Reading}
+    
+  \begin{thebibliography}{10}
+
+  \beamertemplatearticlebibitems
+  % Followed by interesting articles. Keep the list short. 
+
+  \bibitem{uuHash}
+    Thomas Mennecke, Dec 2005, End of the Road for Overpeer 
+    \newblock \url{http://www.slyck.com/story1019.html}
+  \bibitem{fastTrackStudi}
+    Jian Liang, Rakesh Kumar, Keith W. Ross, August 2005
+    \newblock The FastTrack overlay: A measurement study    
+  \end{thebibliography}
+\end{frame}
+
+
+\end{document}
