@@ -6,6 +6,8 @@
 *.fls
 *.out
 *.toc
+*.bib~
+/ausarbeitung/*.pdf
 
 ## Intermediate documents:
 *.dvi

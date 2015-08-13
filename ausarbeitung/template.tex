@@ -2,16 +2,16 @@
 
 \input{preamble.tex}
 
-%%% Title	
+%%% Title
 \title{ \vspace{-1in} 	\usefont{OT1}{bch}{b}{n}
-		\huge \strut  Proseminar: From Jokes to Warfare - A History of Hacking and Data Breaches\strut \\
-		\Large \bfseries \strut Your Topic \strut
+		\huge \strut  Proseminar: Peer-To-Peer Overlay Network Systems\strut \\
+		\Large \bfseries \strut Fasttrack \strut
 }
 
 \author{ 					\usefont{OT1}{bch}{m}{n}
-        From someone\\		\usefont{OT1}{bch}{m}{n}
-        Working somewhere\\	\usefont{OT1}{bch}{m}{n}
-        \texttt{Having an email address}
+        Martin Görick\\		\usefont{OT1}{bch}{m}{n}
+        Freie Universität Berlin\\	\usefont{OT1}{bch}{m}{n}
+        \texttt{goerickm@zedat.fu-berlin.de}
 }
 
 %%% Begin document
@@ -20,14 +20,24 @@
 \begin{@twocolumnfalse}
 \maketitle
 \begin{abstract}
-\blindtext
+\input{text/abstract}
 \vspace{4em}
 \end{abstract}
 \end{@twocolumnfalse}
 ]
 
 \section{Einleitung}
-\Blindtext[1][2] \cite{dijkstra1968letters}
+\input{text/einleitung}
+\section{Allgemeine Informationen}
+\label{sec:allgInfo}
+\input{text/allgemeineInfo}
 
+\section{Funktionsweise}
+\label{sec:funkw}
+\input{text/funktionsweise}
+
+\section{Probleme und Weiterführende Informationen}
+\label{sec:last}
+\input{text/probsAndInfo}
 \bibliography{bibliography}
 \end{document}
