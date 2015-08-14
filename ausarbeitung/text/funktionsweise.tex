@@ -60,7 +60,7 @@ Der SN wiederum sendet eine Liste seiner bekannten SNs zum Knoten zurück.
 Mit dieser Liste aktualisiert der Knoten seinen SN Cache.
 Wenn der SN Cache aktualisiert ist, bricht der Knoten die Verbindung ab und sucht sich aus der aktualisierte Listen einen Eltern SN. 
 Mit welchem er sich verbindet und ihm seine Metadaten und lokale Information schickt.
-Die Möglichkeit der Wahl wird in \ref{subsubsec:wElternSN} erläutert.
+Die Möglichkeit der Wahl des Eltern SN wird in \ref{subsubsec:wElternSN} erläutert.
 An diesem Eltern SN kann nun die Suchanfragen geschickt werden.
 
 \begin{figure}
@@ -72,7 +72,7 @@ An diesem Eltern SN kann nun die Suchanfragen geschickt werden.
 \subsubsection{Wahl des Eltern SN}
 \label{subsubsec:wElternSN}
 
-Im Paper \cite{liang2006fasttrack} ist nicht genau bekannt nach welchen Kriterien der Eltern SN gewählt wird. 
+Im Paper \cite{liang2006fasttrack} ist beschrieben, das nicht genau bekannt ist, nach welchen Kriterien der Eltern SN gewählt wird. 
 Es werden zwei Möglichkeiten in Betracht gezogen.
 Zum einen die Lokalität, dass heißt wie weit der SN vom Knoten entfernt ist und zum anderen die Auslastung des SN.
 Bei der Lokalität wird der RoundTripTime durch einen Ping zum SN gemessen.
@@ -81,7 +81,7 @@ Ein anderer Aspekt ist die Auslastung eines SN.
 Dabei spielt es eine Rolle wie viele normale Knoten ein SN schon verwaltet.
 Die Information der Auslastung wird mit im SN Cache des Knoten gespeichert, welcher beim betreten des Netzwerkes aktualisiert ist.
 In der Abbildung \ref{fig:workl} ist zu erkennen, dass in der Messung der Eltern SN durchschnittlich mit einer geringen Auslastung gewählt werden.
-Somit können beide Kriterien in die Wahl einbringen.
+Somit sind beide Kriterien, die Lokalität sowie die Auslastung des SN, ausschlaggebend in der Wahl des Eltern SN.
 
 \begin{figure}
 \includegraphics[scale=0.3]{gfx/rttSns}
