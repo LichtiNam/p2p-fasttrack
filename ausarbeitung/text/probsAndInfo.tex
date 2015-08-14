@@ -20,9 +20,10 @@ Somit wird es schwierig das ganze Netzwerk zu durchsuchen, da nur wenige der SN 
 \label{subsubsec:uhash}
 
 Ein weiteres Problem ist der Content Hash Funktion UUHash \cite{uuHash} von FastTrack.
-Der Hash wird schnell berechnet, da alle $2^n, n \in \mathbb{N}$ nur 300 KiB in die Berechnung einfließen.
-Somit ist es möglich die Bereiche, welche nicht zur Hash Berechnung verwendet wurde mit Schadcode zu füllen.
+Der Hash kann schnell berechnet werden, da nur alle $2^n, n \in \mathbb{N}$ die ersten 300 KiB in die Berechnung einfließen.
+Somit ist es möglich die Bereiche, welche nicht zur Hash Berechnung verwendet wurde mit Schadcode zu einzufügen.
 Dies führte jedoch auch zu einem Problem, so das 2005 etwa 50\% aller Dateien infiziert waren. \cite{menneck2} 
+Da viele MP3s über FastTrack getauscht werden und die Musikfirmen dies verhindern wollen, wurden viele MP3s kompromittiert um die Anwender zu schädigen. \cite{veitinger2002}
 
 
 \subsection{Implementationen}

@@ -31,13 +31,23 @@ Außerdem damit die Verarbeitung der Anfrage schnell gehen, sollte auch die Hard
 \label{subsec:proAuf}
 
 Die offiziellen Klienten \textit{Kazaa}\cite{kazaa} sind nur für Windows vorhanden
-Er besteht aus vier Komponenten, die folgend vorgestellt werden:
+Er besteht aus vier Komponententeilen, die folgend vorgestellt werden:
 
 \begin{itemize}
-\item[1.] \textbf{GUI:} Die GUI des Windows Klienten für die Eingab von Suchanfragen und anzeigen der Downloads.
+\item[1.] \textbf{GUI:} Die GUI des Windows Klienten für die Eingabe von Suchanfragen, den Einstellen von Optionen und anzeigen, sowie Auswahl der Downloads.
+Die Oberfläche ist in Abbildung \ref{fig:kazgui} dargestellt.
 \item[2.] \textbf{Windows Register:} In der Windows Registry ist der Cache der SuperKnoten gespeichert.
-Dieser enthält für jeden Knoten die IP, den Port, die Auslastung und einen Zeitangabe, wann die Information das letzte mal aktualisiert wurden.
-\item[3.] \textbf{DDB Dateien:} In den DDB Dateien sind die Metainformation der eigenen Dateien gespeichert. Es wird der Name, die Größe, der ContentHash und die Beschreibung der Daten. Diese werden zum Beispiel für die Suche verwendet, wenn die Metadaten zum SN gesendet werden.
-\item[4.] \textbf{DAT-Dateien:} Diese Dateien enthalten die heruntergeladenen Daten, welche am Ende umbenannt werden.
+Dieser enthält für jeden Knoten die IP, den Port, die Auslastung und eine Zeitangabe, wann die Information das letzte mal aktualisiert wurden.
+\item[3.] \textbf{DDB Dateien:} In den DDB Dateien sind die Metainformation der eigenen Dateien gespeichert.
+Es wird der Name, die Größe, der ContentHash und die Beschreibung der Daten eingetragen.
+Diese werden zum Beispiel für die Suche verwendet, wenn die Metadaten zum SN gesendet wurden.
+\item[4.] \textbf{DAT-Dateien:} Diese Dateien enthalten die heruntergeladenen Daten.
+Wenn der Download abgeschlossen ist, werden die Endungen der Dateien umgewandelt.
 \end{itemize}
+
+\begin{figure}
+\includegraphics[scale=0.3]{gfx/Kazaa-search-big}
+\caption{GUI von Kazaa (Quelle \cite{kazaagui})}
+\label{fig:kazgui}
+\end{figure}
 

@@ -11,20 +11,33 @@ Im Anschluss wird in \ref{subsec:search} auf die Suche im Netzwerk eingegangen.
 Im FastTrack Netzwerk gibt es vier verschiedene Nachrichtentypen für den Austausch von Informationen. Folgende Nachrichtentypen gibt es:
 
 \begin{itemize}
-\item[1.] \textbf{Signal Nachrichten:} Diese Nachrichten dienen zum verbinden zum Netzwerk, austauschen von Metadaten und Superknoten Listen.
-Die Signal Nachrichten, werden verschlüsselt übertragen.
-\item[2.] \textbf{Daten Transport Nachrichten:} Dieser Nachrichtentyp wird zum Austausch von Daten verwendet. Dabei werden diese Nachrichten nicht verschlüsselt übertragen und es wird HTTP dafür verwendet.
-\item[3.] \textbf{Advertise Nachrichten:} Da hinter FastTrack eine Firma steht die mittels der Werbung Geld verdient, gibt es ein Nachrichtentyp, der über HTTP Werbung überträgt.
-\item[4.] \textbf{Sofort Nachrichten:} Diese dienen als einfachen Text Austausch und werden im Netzwerk verschlüsselt übertragen.
+\item[1.] \textbf{Signal Nachrichten:} Diese Nachrichten dienen zum Austausch von Informationen im Netzwerk.
+Zum einen um mitzuteilen, wenn sich ein Knoten das Netzwerk betreten will.
+Ein Knoten Metainfomationen zum SN senden will oder ein SN aktuelle Informationen seines SN Caches mit einen normalen Knoten oder anderen SN austauschen will.
+Außerdem werden darüber die Suchanfragen geschickt.
+Wichtig ist, dass alle Signal Nachrichten verschlüsselt übertragen werden.
+Deshalb muss am Anfang einer Übertragung ein Schlüssel ausgetauscht werden.
+\item[2.] \textbf{Daten Transport Nachrichten:} Dieser Nachrichtentyp wird zum Austausch von Daten verwendet. 
+Dabei werden diese Nachrichten nicht verschlüsselt übertragen.
+Für die Übertragung der Rohdaten wird HTTP verwendet.
+\item[3.] \textbf{Advertise Nachrichten:} Da hinter FastTrack Firmen stehen die mittels der Werbung Geld verdient, gibt es ein Nachrichtentyp um die Werbung zu übertragen.
+Dies geschieht unverschlüsselt über HTTP Nachrichten.
+\item[4.] \textbf{Sofort Nachrichten:} Damit es eine Möglichkeit gibt, dass sich zwei Teilnehmer des Netzwerkes unterhalten können, gibt es Sofort Nachrichten.
+In diesen werden nur Text Nachrichten übertragen.
+Damit die Unterhalten nicht mit gelesen werden kann, werden diese verschlüsselt übertragen.
 \end{itemize} 
 
 \subsubsection{Signal Nachrichten}
 \label{subsubsec:sigN}
 
 In der Abbildung \ref{fig:sigN} ist der Aufbau der Signalnachrichten dargestellt.
-Die \textit{Packet ID} enthält die ID des Paketes um die Nachricht zu identifizieren. 
-Im \textit{Message Type} wird angegeben ob eine Verbindung aufgebaut werden soll, Metadaten oder SN-Listen ausgetauscht werden.
+Die \textit{Packet ID} enthält die ID des Paketes um die Nachricht zu identifizieren.
+Dafür wird 1 Byte verwendet.
+Im \textit{Message Type} wird angegeben, ob eine Verbindung aufgebaut werden soll, Metadaten versendet oder SN-Listen ausgetauscht werden.
+Es werden dafür 2 Byte verwendet.
 Der \textit{Payload} enthält die Metadaten oder SN-Listen.
+Die Länge des \textit{Payload} wird in der \textit{Payload Length} gespeichert
+Dafür stehen in der Nachricht 2 Byte zur Verfügung.
 
 \begin{figure}
 \includegraphics[scale=0.25]{gfx/signal_message}
