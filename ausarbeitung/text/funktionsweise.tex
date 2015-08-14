@@ -1,4 +1,5 @@
-In diesem Abschnitt werden die bekannten Funktionsweisen und Nachrichten von FastTrack beschrieben, dabei wird die Information in allen folgenden Abschnitten aus der Studie \cite{liang2006fasttrack} von genommen.
+In diesem Abschnitt werden die bekannten Funktionsweisen und Nachrichten von FastTrack beschrieben.
+Dabei werden die Informationen in allen folgenden Abschnitten aus der Studie \cite{liang2006fasttrack} von genommen.
 Zuerst werden in \ref{subsec:nachricht} auf die Nachrichten, welche über FastTrack verschickt werden, beschrieben.
 Danach wird im Abschnitt \ref{subsec:join} das Verbinden zum FastTrack Netzwerk dargestellt.
 Es wird dann in \ref{subsec:sntosn} der Austausch von Metadaten zwischen Superknoten beschrieben.
@@ -21,7 +22,7 @@ Die Signal Nachrichten, werden verschlüsselt übertragen.
 \label{subsubsec:sigN}
 
 In der Abbildung \ref{fig:sigN} ist der Aufbau der Signalnachrichten dargestellt.
-Die \textit{Packet ID} enthält die ID der Knoten für welche die Nachricht bestimmt ist.
+Die \textit{Packet ID} enthält die ID des Paketes um die Nachricht zu identifizieren. 
 Im \textit{Message Type} wird angegeben ob eine Verbindung aufgebaut werden soll, Metadaten oder SN-Listen ausgetauscht werden.
 Der \textit{Payload} enthält die Metadaten oder SN-Listen.
 
@@ -36,12 +37,18 @@ Der \textit{Payload} enthält die Metadaten oder SN-Listen.
 
 Der Ablauf, wenn sich ein Knoten in FastTrack Netzwerk verbindet ist in Abbildung \ref{fig:join} dargestellt.
 Zuerst wählt der Knoten aus dem eigenen SN Cache ein paar SN.
-Zu den gewählten SN wird eine \textit{UPD probe} Nachricht geschickt um zu testen ob der SN antworten, wenn dieser Antwortet wird ein TCP Handshake durchgeführt. 
+Zu den gewählten SN wird eine \textit{UPD probe} Nachricht geschickt um zu testen ob der SN antworten.
+Nachdem der SN geantwortet hat, wird ein TCP Handshake durchgeführt. 
 Danach findet der Schlüsselaustausch statt, damit die folgenden Nachrichten verschlüsselt werden können.
-Nun sendet der Knoten die Metadaten seiner Dateien zum SN und der SN eine Liste seiner bekannten SNs.
+Nun sendet der Knoten die Metadaten seiner Dateien zum SN.
+Darunter ist auch die lokale IP, der Port und der Benutzername, des Knoten.
+Mit der lokalen IP wird verhindert, dass nur der SN weiß, wo die Daten zu finden sind.
+Der SN wiederum sendet eine Liste seiner bekannten SNs zum Knoten zurück.
 Mit dieser Liste aktualisiert der Knoten seinen SN Cache.
-Wenn der SN Cache aktualisiert ist, bricht der Knoten die Verbindung ab und sucht sich aus der aktualisierte Listen einen Eltern SN. Die Möglichkeit der Wahl wird in \ref{subsubsec:wElternSN} beschrieben.
-An diesem Eltern SN schickt seine Suchanfragen.
+Wenn der SN Cache aktualisiert ist, bricht der Knoten die Verbindung ab und sucht sich aus der aktualisierte Listen einen Eltern SN. 
+Mit welchem er sich verbindet und ihm seine Metadaten und lokale Information schickt.
+Die Möglichkeit der Wahl wird in \ref{subsubsec:wElternSN} erläutert.
+An diesem Eltern SN kann nun die Suchanfragen geschickt werden.
 
 \begin{figure}
 \includegraphics[scale=0.3]{gfx/join}
@@ -54,10 +61,13 @@ An diesem Eltern SN schickt seine Suchanfragen.
 
 Im Paper \cite{liang2006fasttrack} ist nicht genau bekannt nach welchen Kriterien der Eltern SN gewählt wird. 
 Es werden zwei Möglichkeiten in Betracht gezogen.
-Zum einen die Lokalität, das heißt wie weit der SN vom Knoten entfernt ist und zum anderen die Auslastung des SN.
+Zum einen die Lokalität, dass heißt wie weit der SN vom Knoten entfernt ist und zum anderen die Auslastung des SN.
 Bei der Lokalität wird der RoundTripTime durch einen Ping zum SN gemessen.
 In der Messung \ref{fig:rtt} ist zu erkennen, dass die meisten Knoten mit SN in ihrer Nähe verbunden sind.
-Ein anderer Aspekt ist die Auslastung eines SN., diese wird mit im SN Cache des Knoten gespeichert.
+Ein anderer Aspekt ist die Auslastung eines SN.
+Dabei spielt es eine Rolle wie viele normale Knoten ein SN schon verwaltet.
+Die Information der Auslastung wird mit im SN Cache des Knoten gespeichert, welcher beim betreten des Netzwerkes aktualisiert ist.
+In der Abbildung \ref{fig:workl} ist zu erkennen, dass in der Messung der Eltern SN durchschnittlich mit einer geringen Auslastung gewählt werden.
 Somit können beide Kriterien in die Wahl einbringen.
 
 \begin{figure}
@@ -66,13 +76,20 @@ Somit können beide Kriterien in die Wahl einbringen.
 \label{fig:rtt}
 \end{figure}
 
+\begin{figure}
+\includegraphics[scale=0.45]{gfx/workload}
+\caption{Auswahl des Eltern SN nach Auslastung (Quelle \cite{liang2006fasttrack})}
+\label{fig:workl}
+\end{figure}
+
 \subsection{Datenaustausch zwischen Superknoten}
 \label{subsec:sntosn}
 
-Der Ablauf wie die SNs untereinander ihre Daten austauschen ist in der Abbildung \ref{fig:snsn} dargestellt.
-Wenn sich ein SN aktualisieren will, dann verbindet dieser sich zuerst über einen TCP Handshake mit dem SN aus seinem Cache um seine Liste oder Metadaten auszutauschen.
-Nach dem TCP Handshake werden die Schlüssel austauscht.
-Die folgenden Nachrichten der Metadaten und SN Listen werden nun verschlüsselt ausgetauscht.
+Der Ablauf wie die Superknoten untereinander ihre Daten austauschen ist in der Abbildung \ref{fig:snsn} dargestellt.
+Zuerst wählt der SN einen SN aus seinem Cache.
+Mit dem gewählten SN wird ein TCP Handshake durchgeführt um sich zu verbinden.
+Da die Nachrichten verschlüsselt werden sollen, wird nach dem TCP Handshake ein Schlüssel ausgetauscht.
+Danach senden die SN verschlüsselt ihre aktuellen bekannten SNs um ihren Cache zu aktualisieren.
 
 \begin{figure}
 \includegraphics[scale=0.3]{gfx/SnToSn}
@@ -84,7 +101,7 @@ Die folgenden Nachrichten der Metadaten und SN Listen werden nun verschlüsselt 
 \label{subsec:search}
 
 Wenn ein Knoten ein Datei suchen will, sendet dieser seinen Suchanfrage an seinen Eltern SN.
-Dieser durchsucht die Metadaten seine bekannten Knoten und schickt die Antwort ob etwas gefunden wird zurück.
+Dieser durchsucht die Metadaten seine bekannten Knoten anhand der Wörter in der Suchanfrage und schickt die Antwort ob etwas gefunden wird zurück.
 Außerdem wird die Suchanfrage an seine bekannte SN gesendet, damit dieser in den Metadaten seiner bekannten Knoten.
 Mit der Antwort, kann der Knoten nun den Download starten.
 In Sektion \ref{subsubsec:dnat} wird beschrieben wie der Download stattfindet, wenn der Knoten, welcher die Datei besitzt hinter eine Nat sitzt.

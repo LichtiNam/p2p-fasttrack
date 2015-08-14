@@ -1,10 +1,13 @@
+In diesem Abschnitt geht es darum auf die Probleme \ref{subsec:probT} von FastTrack einzugehen.
+Außerdem wird im letzten Teil \ref{subsec:impl} angegeben, welche Implementierung es vom FastTrack Protokoll gibt und ein kurzer Überblick wie es damit weiter ging.
+
 
 \subsection{Probleme von FastTrack}
 \label{subsec:probT}
 
-Eines der Probleme die aus dem Messungen, wie in Abbildung \ref{fig:rtt} zu erkennen ist, das die Round Trip Time von etwa 85 \% der SNs bei maximal 100 ms beträgt.
-Wie in der Abbildung \ref{fig:rttcaida} von Caida.org von 2001 \cite{caida} zu erkennen, dass die RTT von Amerika nach Europa und Asien etwa 200 ms beträgt.
-Somit wird es schwierig das ganze Netzwerk zu durchsuchen, da nicht alle SNs erreicht werden.
+Eines der Probleme, welche aus dem Messungen von \cite{liang2006fasttrack}, wie in Abbildung \ref{fig:rtt} zu erkennen ist, dass die Round Trip Time von etwa 85 \% der SN zu SN Verbindungen bei maximal 100 ms beträgt.
+Wie in der Abbildung \ref{fig:rttcaida} von Caida.org von 2001 \cite{caida} zu erkennen, beträgt die Round Trip Time von Amerika nach Europa und Asien etwa 200 ms.
+Somit wird es schwierig das ganze Netzwerk zu durchsuchen, da nur wenige der SN über Verbindungen verfügen, welche weiter entfernt sind.
 
 \begin{figure}
 \includegraphics[scale=0.3]{gfx/dist_density_rie_20010513}
@@ -28,7 +31,9 @@ Dies führte jedoch auch zu einem Problem, so das 2005 etwa 50\% aller Dateien i
 Die offizielle Implementierung des FastTrack Netzwerkes ist Kazaa \cite{kazaa} von den Beiden FastTrack Entwicklern.
 
 Eine verbreitete inoffizielle Implementierung ist die Kazaa-Lite \cite{kazaaLite} Version.
-Diese verwendet bei der Suche nicht nur den Eltern SN sondern versucht an mehrere SNs seine Suchanfrage zu senden und schließt die Verbindung nach der Antwort wieder\cite{liang2006fasttrack}.
+Diese verwendet bei der Suche nicht nur den Eltern SN sondern versucht an mehrere SNs seine Suchanfrage zu senden.
+Dabei wird zuerst die Anfrage an den Eltern SN gesendet und auf die Antwort gewartet.
+Wenn der Knoten die Antwort erhält schließt dieser die Verbindung und sendet die Anfrage an einen neuen SN.\cite{liang2006fasttrack}
 
 Zwei andere Implementierungen, welche das FastTrack Netwerk benutzten sind Grokster \cite{grokster} und Morpheus \cite{morpheus}, wobei Morpheus 2002 auf das Gnutella \cite{gnutella} Netzwerk umgestiegen ist. \cite{morphvsKazaa}
 
