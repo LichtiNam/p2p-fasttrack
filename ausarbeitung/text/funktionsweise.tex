@@ -50,7 +50,8 @@ Dafür stehen in der Nachricht 2 Byte zur Verfügung.
 
 Der Ablauf, wenn sich ein Knoten in FastTrack Netzwerk verbindet ist in Abbildung \ref{fig:join} dargestellt.
 Zuerst wählt der Knoten aus dem eigenen SN Cache ein paar SN.
-Zu den gewählten SN wird eine \textit{UPD probe} Nachricht geschickt um zu testen ob der SN antworten.
+Im Paper \cite{liang2006fasttrack} wird angegeben, dass normalerweise 5 SN gewählt werden.
+Zu den gewählten SN wird eine UDP Nachricht geschickt, um zu testen ob der SN antworten.
 Nachdem der SN geantwortet hat, wird ein TCP Handshake durchgeführt. 
 Danach findet der Schlüsselaustausch statt, damit die folgenden Nachrichten verschlüsselt werden können.
 Nun sendet der Knoten die Metadaten seiner Dateien zum SN.
@@ -58,8 +59,10 @@ Darunter ist auch die lokale IP, der Port und der Benutzername, des Knoten.
 Mit der lokalen IP wird verhindert, dass nur der SN weiß, wo die Daten zu finden sind.
 Der SN wiederum sendet eine Liste seiner bekannten SNs zum Knoten zurück.
 Mit dieser Liste aktualisiert der Knoten seinen SN Cache.
-Wenn der SN Cache aktualisiert ist, bricht der Knoten die Verbindung ab und sucht sich aus der aktualisierte Listen einen Eltern SN. 
-Mit welchem er sich verbindet und ihm seine Metadaten und lokale Information schickt.
+Wenn der SN Cache aktualisiert ist, bricht der Knoten die Verbindung ab und sucht sich aus der aktualisierte Listen einen SN.
+Dies ist der sogenannte Eltern SN. 
+Mit diesem baut der Knoten eine Verbindung auf.
+Danach schickt er ihm seine Metadaten und lokale Information.
 Die Möglichkeit der Wahl des Eltern SN wird in \ref{subsubsec:wElternSN} erläutert.
 An diesem Eltern SN kann nun die Suchanfragen geschickt werden.
 
