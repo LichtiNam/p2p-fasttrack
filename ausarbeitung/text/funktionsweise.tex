@@ -75,11 +75,12 @@ An diesem Eltern SN kann nun die Suchanfragen geschickt werden.
 \subsubsection{Wahl des Eltern SN}
 \label{subsubsec:wElternSN}
 
-Im Paper \cite{liang2006fasttrack} ist beschrieben, das nicht genau bekannt ist, nach welchen Kriterien der Eltern SN gewählt wird. 
-Es werden zwei Möglichkeiten in Betracht gezogen.
-Zum einen die Lokalität, dass heißt wie weit der SN vom Knoten entfernt ist und zum anderen die Auslastung des SN.
-Bei der Lokalität wird der RoundTripTime durch einen Ping zum SN gemessen.
-In der Messung \ref{fig:rtt} ist zu erkennen, dass die meisten Knoten mit SN in ihrer Nähe verbunden sind.
+Im Paper \cite{liang2006fasttrack} ist beschrieben, dass nicht genau bekannt ist nach welchen Kriterien der Eltern SN gewählt wird. 
+Es werden dort zwei Möglichkeiten in Betracht gezogen.
+Zum einen die Lokalität, dass heißt wie weit ein SN vom Knoten entfernt ist.
+Außerdem wird in Betracht gezogen in welcher Auslastung sich ein SN befindet.
+Bei der Lokalität wird der Round Trip Time durch einen Ping zum SN gemessen.
+In der Messung \ref{fig:rtt} ist zu erkennen, dass  etwa 70\% der Knoten mit einem relativen nahen SN von etwa 60ms Abstand verbunden sind.
 Ein anderer Aspekt ist die Auslastung eines SN.
 Dabei spielt es eine Rolle wie viele normale Knoten ein SN schon verwaltet.
 Die Information der Auslastung wird mit im SN Cache des Knoten gespeichert, welcher beim betreten des Netzwerkes aktualisiert ist.
