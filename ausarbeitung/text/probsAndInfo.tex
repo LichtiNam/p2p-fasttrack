@@ -40,4 +40,17 @@ Zwei andere Implementierungen, welche das FastTrack Netwerk benutzten sind Groks
 
 Außerdem gibt es eine Implementierung für giFT \cite{gift}, dies ist eine Sammlung für Peer-To-Peer Protokolle und FastTrack wurde per reverse Engineering als Plugin hinzugefügt \cite{liang2006fasttrack}
 
+\subsubsection{Skype}
+\label{subsubsec:skype}
+
 Eine der bekanntesten Weiterentwicklung die auf FastTrack basiert und aufbaut ist Skype \cite{skypeAna}, welches von den selben Entwicklern entwickelt wurde.
+In der Abbildung \ref{fig:skypeAufbau} ist der Aufbau des Skype Netzwerkes dargestellt.
+Wie zu erkennen, ist es ähnlich dem aus Abbildung \ref{fig:auf} aufgebauten FastTrack Netzwerkes.
+Der einzige Unterschied besteht darin, dass sich ein Knoten vorher an einer Zentralen Instanz, den Skype Login Server, anmeldet um den Netzwerk beizutreten.
+Die Superknoten im Skype Netzwerk dienen dafür einen \textit{Global Index} zu erzeugen, so das es möglich ist, dass jeder Knoten das gesamte Wissen von allen erreichbaren Benutzern hat. \cite{skypep2p}
+
+\begin{figure}
+\includegraphics[scale=0.5]{gfx/skypeAufbau}
+\caption{Aufbau des Skype Netzwerkes (Quelle \cite{skypeAna})}
+\label{fig:skypeAufbau}
+\end{figure}
